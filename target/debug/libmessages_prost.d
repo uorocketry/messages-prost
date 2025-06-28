@@ -1,0 +1,1 @@
+/home/bonjour/Rocketry/messages-prost/target/debug/libmessages_prost.rlib: /home/bonjour/Rocketry/messages-prost/build.rs /home/bonjour/Rocketry/messages-prost/src/lib.rs /home/bonjour/Rocketry/messages-prost/target/debug/build/messages-prost-86d309ada18aa2c8/out/messages_prost.sensor.rs
