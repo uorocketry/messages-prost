@@ -5,7 +5,7 @@ edition = "2021"
 build = "build.rs"
 
 [dependencies]
-prost = { version = "0.14.1", features = ["derive"] }
+prost = { version = "0.14.1", features = ["derive"], default-features = false }
 
 [build-dependencies]
 prost-build = "0.14.1"
