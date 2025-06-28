@@ -4,6 +4,18 @@ package messages_prost.log;
 
 import "common.proto";
 
+enum Event {
+    INITIALIZED = 0;
+    MAIN_DEPLOY = 1;
+} 
+
+enum LogLevel {
+    INFO = 0;
+    DEBUG = 1;
+    WARN = 2;
+    PANIC = 3;
+}
+
 message Log {
     common.Node node = 1; 
     bytes message = 2; 

@@ -52,8 +52,6 @@ macro_rules! display_context {
     };
 }
 
-pub(crate) use display_context;
-pub(crate) use display_event;
 
 fn main() -> Result<()> {
     let out_dir = std::path::PathBuf::from(std::env::var("OUT_DIR").unwrap());
@@ -61,7 +59,17 @@ fn main() -> Result<()> {
     config.type_attribute(".", "#[derive(serde::Serialize, serde::Deserialize)]");
     config.btree_map(&["."]);
 
-    config.compile_protos(&["src/log.proto", "src/gps.proto", "src/sbg.proto", "src/common.proto", "src/state.proto"], &["src/"])
+    config
+        .compile_protos(
+            &[
+                "src/log.proto",
+                "src/gps.proto",
+                "src/sbg.proto",
+                "src/common.proto",
+                "src/state.proto",
+            ],
+            &["src/"],
+        )
         .unwrap();
 
     Ok(())
