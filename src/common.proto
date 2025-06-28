@@ -9,4 +9,3 @@ enum Node {
   STRAIN_BOARD = 3;
 }
 
-

@@ -5,7 +5,7 @@ package messages_prost.gps;
 import "common.proto";
 
 message Gps {
-    Node node = 1; 
+    common.Node node = 1; 
     string message_type = 2;
     bytes data = 3;
 }
