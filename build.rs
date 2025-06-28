@@ -1,5 +1,18 @@
-use std::io::Result;
-fn main() -> Result<()> {
-    prost_build::compile_protos(&["src/sensor.proto"], &["src/"])?;
-    Ok(())
+fn main() {
+    let mut config = prost_build::Config::new();
+    config.type_attribute(".", "#[derive(serde::Serialize, serde::Deserialize)]");
+    config.btree_map(&["."]);
+    config
+        .compile_protos(
+            &[
+                "main.proto",
+                "common.proto",
+                "command.proto",
+                "sbg.proto",
+                "gps.proto",
+                "logging.proto",
+            ],
+            &["protos/"],
+        )
+        .unwrap();
 }

@@ -1,7 +1,11 @@
 #![no_std]
 
-pub mod messages_prost {
-    pub mod sensor {
-        include!(concat!(env!("OUT_DIR"), "/messages_prost.sensor.rs"));
-    }
+pub mod messages {
+    include!(concat!(env!("OUT_DIR"), "/messages.rs"));
 }
+
+pub mod command;
+pub mod common;
+pub mod gps;
+pub mod logging;
+pub mod sbg;

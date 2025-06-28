@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package messages;
+
+message Gps {
+  string message_type = 1;
+  bytes data = 2;
+} 

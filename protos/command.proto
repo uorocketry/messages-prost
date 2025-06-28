@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package messages;
+
+import "common.proto";
+
+enum RadioRate {
+  RADIO_RATE_UNSPECIFIED = 0;
+  FAST = 1;
+  SLOW = 2;
+}
+
+message DeployDrogue {
+  bool val = 1;
+}
+
+message DeployMain {
+  bool val = 1;
+}
+
+message PowerDown {
+  Node board = 1;
+}
+
+message RadioRateChange {
+  RadioRate rate = 1;
+}
+
+message Online {
+  bool online = 1;
+}
+
+message Command {
+  oneof command {
+    DeployDrogue deploy_drogue = 1;
+    DeployMain deploy_main = 2;
+    PowerDown power_down = 3;
+    RadioRateChange radio_rate_change = 4;
+    Online online = 5;
+  }
+} 

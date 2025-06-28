@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package messages;
+
+import "sbg.proto";
+import "gps.proto";
+import "command.proto";
+import "logging.proto";
+import "common.proto";
+
+message RecoverySensing {
+  State state = 1;
+  uint32 time = 2;
+}
+
+message Message {
+  oneof data {
+    RecoverySensing recovery_sensing = 1;
+    SbgData sbg_data = 2;
+    Gps gps = 3;
+    Command command = 4;
+    LogMessage log_message = 5;
+  }
+} 
