@@ -1,6 +1,8 @@
 #![no_std]
 
-pub mod messages_prost {
+pub mod sensor {
+    use crate::common;
+
     pub mod sbg {
         include!(concat!(env!("OUT_DIR"), "/messages_prost.sbg.rs"));
     }
@@ -8,16 +10,18 @@ pub mod messages_prost {
     pub mod gps {
         include!(concat!(env!("OUT_DIR"), "/messages_prost.gps.rs"));
     }
-
-    pub mod common {
-        include!(concat!(env!("OUT_DIR"), "/messages_prost.common.rs"));
-    }
-
-    pub mod state {
-        include!(concat!(env!("OUT_DIR"), "/messages_prost.state.rs"));
-    }
-
-    pub mod log {
-        include!(concat!(env!("OUT_DIR"), "/messages_prost.log.rs"));
-    }
 }
+
+
+pub mod common {
+    include!(concat!(env!("OUT_DIR"), "/messages_prost.common.rs"));
+}
+
+pub mod state {
+    include!(concat!(env!("OUT_DIR"), "/messages_prost.state.rs"));
+}
+
+pub mod log {
+    include!(concat!(env!("OUT_DIR"), "/messages_prost.log.rs"));
+}
+
