@@ -25,3 +25,4 @@ pub mod log {
     include!(concat!(env!("OUT_DIR"), "/messages_prost.log.rs"));
 }
 
+pub use mavlink;
