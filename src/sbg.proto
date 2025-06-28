@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package messages_prost.sbg;
+
+message Sbg {
+    uint32 session_id = 1; 
+    
+
+}
