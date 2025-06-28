@@ -2,6 +2,10 @@ syntax = "proto3";
 
 package messages_prost.gps;
 
-message Sensor {
-    uint32 session_id = 1; 
+import "common.proto";
+
+message Gps {
+    Node node = 1; 
+    string message_type = 2;
+    bytes data = 3;
 }
