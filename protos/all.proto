@@ -303,7 +303,6 @@ message SbgData {
   }
 }
 
-// From main.proto
 message RecoverySensing {
   State state = 1;
   uint32 time = 2;
