@@ -179,12 +179,13 @@ message EkfQuat {
 }
 
 message EkfNav {
-    uint32 time_stamp = 1;
-    EkfStatus status = 2;
-    repeated float velocity = 3;
-    repeated double position = 4;
-    repeated float velocity_std_dev = 5;
-    repeated float position_std_dev = 6;
+    uint32 time_stamp = 1; // Time in us since the sensor power up.
+    repeated float velocity = 2; // North, East, Down velocity in m.s^-1. (length 3)
+    repeated float velocity_std_dev = 3; // North, East, Down velocity 1 sigma standard deviation in m.s^-1. (length 3)
+    repeated double position = 4; // Latitude, Longitude in degrees positive North and East. Altitude above MSL in meters. (length 3)
+    optional float undulation = 5; // Altitude difference between the geoid and the Ellipsoid in meters.
+    repeated float position_std_dev = 6; // Latitude, longitude and altitude 1 sigma standard deviation in meters. (length 3)
+    optional EkfStatus status = 7; // EKF solution status bitmask and enum.
 }
 
 message Imu {
