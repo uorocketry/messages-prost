@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package messages_prost.gps;
+
+message Sensor {
+    uint32 session_id = 1; 
+}
