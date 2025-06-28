@@ -16,4 +16,8 @@ pub mod messages_prost {
     pub mod state {
         include!(concat!(env!("OUT_DIR"), "/messages_prost.state.rs"));
     }
+
+    pub mod log {
+        include!(concat!(env!("OUT_DIR"), "/messages_prost.log.rs"));
+    }
 }
