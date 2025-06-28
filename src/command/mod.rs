@@ -1,45 +1,45 @@
 // This module will contain command-related data types and logic.
 
 use crate::messages::{
-    command, Command, DeployDrogue, DeployMain, Online, PowerDown, RadioRateChange,
+    command_message, CommandMessage, DeployDrogue, DeployMain, Online, PowerDown, RadioRateChange,
 };
 
-impl From<DeployDrogue> for Command {
+impl From<DeployDrogue> for CommandMessage {
     fn from(v: DeployDrogue) -> Self {
-        Command {
-            command: Some(command::Command::DeployDrogue(v)),
+        CommandMessage {
+            command: Some(command_message::Command::DeployDrogue(v)),
         }
     }
 }
 
-impl From<DeployMain> for Command {
+impl From<DeployMain> for CommandMessage {
     fn from(v: DeployMain) -> Self {
-        Command {
-            command: Some(command::Command::DeployMain(v)),
+        CommandMessage {
+            command: Some(command_message::Command::DeployMain(v)),
         }
     }
 }
 
-impl From<PowerDown> for Command {
+impl From<PowerDown> for CommandMessage {
     fn from(v: PowerDown) -> Self {
-        Command {
-            command: Some(command::Command::PowerDown(v)),
+        CommandMessage {
+            command: Some(command_message::Command::PowerDown(v)),
         }
     }
 }
 
-impl From<RadioRateChange> for Command {
+impl From<RadioRateChange> for CommandMessage {
     fn from(v: RadioRateChange) -> Self {
-        Command {
-            command: Some(command::Command::RadioRateChange(v)),
+        CommandMessage {
+            command: Some(command_message::Command::RadioRateChange(v)),
         }
     }
 }
 
-impl From<Online> for Command {
+impl From<Online> for CommandMessage {
     fn from(v: Online) -> Self {
-        Command {
-            command: Some(command::Command::Online(v)),
+        CommandMessage {
+            command: Some(command_message::Command::Online(v)),
         }
     }
 }

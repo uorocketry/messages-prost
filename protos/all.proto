@@ -2,9 +2,92 @@ syntax = "proto3";
 
 package messages;
 
-// --- Sensor Status Messages (from sensor_status.rs) ---
+// From common.proto
+enum Node {
+  NODE_UNSPECIFIED = 0;
+  PRESSURE_BOARD = 1;
+  TEMPERATURE_BOARD = 2;
+  STRAIN_BOARD = 3;
+}
 
-// EkfStatus
+enum State {
+  STATE_UNSPECIFIED = 0;
+  INITIALIZING = 1;
+  WAIT_FOR_TAKEOFF = 2;
+  ASCENT = 3;
+  DESCENT = 4;
+  TERMINAL_DESCENT = 5;
+  WAIT_FOR_RECOVERY = 6;
+  ABORT = 7;
+}
+
+// From command.proto
+enum RadioRate {
+  RADIO_RATE_UNSPECIFIED = 0;
+  FAST = 1;
+  SLOW = 2;
+}
+
+message DeployDrogue {
+  bool val = 1;
+}
+
+message DeployMain {
+  bool val = 1;
+}
+
+message PowerDown {
+  Node board = 1;
+}
+
+message RadioRateChange {
+  RadioRate rate = 1;
+}
+
+message Online {
+  bool online = 1;
+}
+
+message CommandMessage {
+  oneof command {
+    DeployDrogue deploy_drogue = 1;
+    DeployMain deploy_main = 2;
+    PowerDown power_down = 3;
+    RadioRateChange radio_rate_change = 4;
+    Online online = 5;
+  }
+}
+
+// From gps.proto
+message Gps {
+  string message_type = 1;
+  bytes data = 2;
+}
+
+// From logging.proto
+enum LogLevel {
+  LOG_LEVEL_UNSPECIFIED = 0;
+  DEBUG = 1;
+  INFO = 2;
+  WARN = 3;
+  ERROR = 4;
+}
+
+enum ErrorContext {
+  ERROR_CONTEXT_UNSPECIFIED = 0;
+  GENERAL = 1;
+  SENSORS = 2;
+  CONTROL = 3;
+  TELEMETRY = 4;
+}
+
+message LogMessage {
+  LogLevel level = 1;
+  ErrorContext context = 2;
+  string message = 3;
+}
+
+// From sbg.proto
 enum EkfSolutionMode {
   EKF_SOLUTION_MODE_UNSPECIFIED = 0;
   UNINITIALIZED = 1;
@@ -41,7 +124,6 @@ message EkfStatus {
   bool depth_used = 24;
 }
 
-// UtcTimeStatus
 enum ClockStatus {
   CLOCK_STATUS_UNSPECIFIED = 0;
   CLOCK_ERROR = 1;
@@ -62,7 +144,6 @@ message UtcTimeStatus {
   UtcStatus utc_status = 2;
 }
 
-// AirStatus
 message AirStatus {
   bool time_is_delay = 1;
   bool pressure_abs_valid = 2;
@@ -72,7 +153,6 @@ message AirStatus {
   bool temperature_valid = 6;
 }
 
-// ImuStatus
 message ImuStatus {
   bool com_ok = 1;
   bool status_test_pass = 2;
@@ -86,7 +166,6 @@ message ImuStatus {
   bool gyros_in_range = 10;
 }
 
-// GpsPositionStatus
 enum GpsPositionStatusE {
   GPS_POSITION_STATUS_E_UNSPECIFIED = 0;
   SOL_COMPUTED = 1;
@@ -115,7 +194,6 @@ message GpsPositionStatus {
     GpsPositionType type = 2;
 }
 
-// GpsVelStatus
 enum GpsVelStatusE {
   GPS_VEL_STATUS_E_UNSPECIFIED = 0;
   VEL_SOL_COMPUTED = 1;
@@ -136,9 +214,6 @@ message GpsVelStatus {
     GpsVelStatusE status = 1;
     GpsVelType type = 2;
 }
-
-
-// --- Sensor Data Messages (from sensor.rs) ---
 
 message GpsPos {
     optional double latitude = 1;
@@ -225,5 +300,21 @@ message SbgData {
     EkfNav ekf_nav = 5;
     GpsVel gps_vel = 6;
     Air air = 7;
+  }
+}
+
+// From main.proto
+message RecoverySensing {
+  State state = 1;
+  uint32 time = 2;
+}
+
+message Message {
+  oneof data {
+    RecoverySensing recovery_sensing = 1;
+    SbgData sbg_data = 2;
+    Gps gps = 3;
+    CommandMessage command = 4;
+    LogMessage log_message = 5;
   }
 } 
