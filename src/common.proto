@@ -9,3 +9,10 @@ enum Node {
   STRAIN_BOARD = 3;
 }
 
+enum ErrorContext {
+  GroundStation = 0;
+  UnkownCanMessage = 1;
+  UnknownRadioMessage = 2;
+  UnkownProstMessage = 3;
+  NoRadioTransfer = 4;
+}

@@ -10,6 +10,10 @@ pub mod sensor {
     pub mod gps {
         include!(concat!(env!("OUT_DIR"), "/messages_prost.gps.rs"));
     }
+
+    pub mod madgwick {
+        include!(concat!(env!("OUT_DIR"), "/messages_prost.madgwick.rs"));
+    }
 }
 
 

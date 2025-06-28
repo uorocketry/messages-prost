@@ -67,6 +67,7 @@ fn main() -> Result<()> {
                 "src/sbg.proto",
                 "src/common.proto",
                 "src/state.proto",
+                "src/sensor/madgwick.proto"
             ],
             &["src/"],
         )
