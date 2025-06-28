@@ -1,5 +1,11 @@
 #![no_std]
 
-pub mod messages {
-    include!(concat!(env!("OUT_DIR"), "/messages.rs"));
+pub mod messages_prost {
+    pub mod sensor {
+        include!(concat!(env!("OUT_DIR"), "/messages_prost.sensor.rs"));
+    }
+
+    pub mod gps {
+        include!(concat!(env!("OUT_DIR"), "/messages_prost.gps.rs"));
+    }
 }
