@@ -4,7 +4,7 @@ package messages_prost.madgwick;
 
 import "common.proto";
 
-message MadwickData {
+message Quaternion {
     float w = 1;
     float x = 2;
     float y = 3; 
@@ -13,5 +13,5 @@ message MadwickData {
 
 message Madgwick {
     common.Node node = 1; 
-    MadwickData data = 2; 
+    Quaternion data = 2; 
 }
