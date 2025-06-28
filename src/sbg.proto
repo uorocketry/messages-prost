@@ -198,14 +198,13 @@ message Imu {
 }
 
 message GpsVel {
-    uint32 time_stamp = 1;
-    GpsVelStatus status = 2;
-    optional uint32 time_of_week = 3;
-    repeated float velocity = 4;
-    optional float heading = 5;
-    optional float accuracy = 6;
-    repeated float velocity_acc = 7;
-    optional float heading_acc = 8;
+    uint32 time_stamp = 1; // Time in us since the sensor power up.
+    optional GpsVelStatus status = 2; // GPS velocity status, type and bitmask.
+    optional uint32 time_of_week = 3; // GPS time of week in ms.
+    repeated float velocity = 4; // GPS North, East, Down velocity in m.s^-1. (length 3)
+    repeated float velocity_acc = 5; // GPS North, East, Down velocity 1 sigma accuracy in m.s^-1. (length 3)
+    optional float course = 6; // Track ground course in degrees.
+    optional float course_acc = 7; // Course accuracy in degrees.
 }
 
 message SbgData {
