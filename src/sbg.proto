@@ -4,6 +4,12 @@ package messages_prost.sbg;
 
 import "common.proto";
 
+message Vector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
 // From sbg.proto
 enum EkfSolutionMode {
   EKF_SOLUTION_MODE_UNSPECIFIED = 0;
@@ -171,39 +177,46 @@ message Air {
     optional float air_temperature = 7;
 }
 
+message Quaternion {
+  float w = 1;
+  float x = 2;
+  float y = 3;
+  float z = 4;
+}
+
 message EkfQuat {
     uint32 time_stamp = 1;
     EkfStatus status = 2;
-    repeated float quaternion = 3;
-    repeated float euler_std_dev = 4;
+    optional Quaternion quaternion = 3;
+    optional Vector3 euler_std_dev = 4;
 }
 
 message EkfNav {
     uint32 time_stamp = 1; // Time in us since the sensor power up.
-    repeated float velocity = 2; // North, East, Down velocity in m.s^-1. (length 3)
-    repeated float velocity_std_dev = 3; // North, East, Down velocity 1 sigma standard deviation in m.s^-1. (length 3)
-    repeated double position = 4; // Latitude, Longitude in degrees positive North and East. Altitude above MSL in meters. (length 3)
+    optional Vector3 velocity = 2; // North, East, Down velocity in m.s^-1. (length 3)
+    optional Vector3 velocity_std_dev = 3; // North, East, Down velocity 1 sigma standard deviation in m.s^-1. (length 3)
+    optional Vector3 position = 4; // Latitude, Longitude in degrees positive North and East. Altitude above MSL in meters. (length 3)
     optional float undulation = 5; // Altitude difference between the geoid and the Ellipsoid in meters.
-    repeated float position_std_dev = 6; // Latitude, longitude and altitude 1 sigma standard deviation in meters. (length 3)
+    optional Vector3 position_std_dev = 6; // Latitude, longitude and altitude 1 sigma standard deviation in meters. (length 3)
     optional EkfStatus status = 7; // EKF solution status bitmask and enum.
 }
 
 message Imu {
     uint32 time_stamp = 1;
     ImuStatus status = 2;
-    repeated float accelerometers = 3;
-    repeated float gyroscopes = 4;
+    optional Vector3 accelerometers = 3;
+    optional Vector3 gyroscopes = 4;
     optional float temperature = 5;
-    repeated float delta_velocity = 6;
-    repeated float delta_angle = 7;
+    optional Vector3 delta_velocity = 6;
+    optional Vector3 delta_angle = 7;
 }
 
 message GpsVel {
     uint32 time_stamp = 1; // Time in us since the sensor power up.
     optional GpsVelStatus status = 2; // GPS velocity status, type and bitmask.
     optional uint32 time_of_week = 3; // GPS time of week in ms.
-    repeated float velocity = 4; // GPS North, East, Down velocity in m.s^-1. (length 3)
-    repeated float velocity_acc = 5; // GPS North, East, Down velocity 1 sigma accuracy in m.s^-1. (length 3)
+    optional Vector3 velocity = 4; // GPS North, East, Down velocity in m.s^-1. (length 3)
+    optional Vector3 velocity_acc = 5; // GPS North, East, Down velocity 1 sigma accuracy in m.s^-1. (length 3)
     optional float course = 6; // Track ground course in degrees.
     optional float course_acc = 7; // Course accuracy in degrees.
 }
