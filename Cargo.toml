@@ -19,5 +19,5 @@ defmt = "0.3.2"
 prost-build = "0.14.1"
 
 [features]
-default = ["mavlink/embedded-hal-02", "mavlink/uorocketry"]
+default = ["mavlink/embedded", "mavlink/uorocketry"]
 std = ["mavlink/std", "mavlink/tcp", "mavlink/udp", "mavlink/direct-serial", "mavlink/serde"]
