@@ -13,16 +13,6 @@ message Vector3 {
 // endregion Vector3
 
 // region Ekf
-enum EkfSolutionMode {
-  EKF_SOLUTION_MODE_UNSPECIFIED = 0;
-  UNINITIALIZED = 1;
-  VERTICAL_GYRO = 2;
-  AHRS = 3;
-  NAV_VELOCITY = 4;
-  NAV_POSITION = 5;
-}
-
-// Define the bitmask flags as an enum
 enum EkfStatusFlag {
   EKF_STATUS_NONE           = 0;
   EKF_STATUS_ATTITUDE_VALID = 1;      // 0x01
@@ -52,7 +42,6 @@ enum EkfStatusFlag {
 
 // Use a uint32 to store the bitmask, and keep the solution mode as a separate field
 message EkfStatus {
-  EkfSolutionMode solution_mode = 1;
   uint32 flags = 2; // Bitmask of EkfStatusFlag values.
 }
 // endregion Ekf
@@ -117,7 +106,7 @@ message ImuStatus {
 // endregion Imu
 
 // region Gps
-enum GpsPositionStatus {
+enum GpsPositionStatusE {
   GPS_POSITION_STATUS_E_UNSPECIFIED = 0;
   SOL_COMPUTED = 1;
   INSUFFICIENT_OBS = 2;
@@ -141,11 +130,11 @@ enum GpsPositionType {
 }
 
 message GpsPositionStatus {
-    GpsPositionStatus status = 1;
+    GpsPositionStatusE status = 1;
     GpsPositionType type = 2;
 }
 
-enum GpsVelStatus {
+enum GpsVelStatusE {
   GPS_VEL_STATUS_E_UNSPECIFIED = 0;
   VEL_SOL_COMPUTED = 1;
   VEL_INSUFFICIENT_OBS = 2;
@@ -185,7 +174,21 @@ message GpsPos {
     GpsPositionStatus status = 2;
     optional GpsPosData data = 3;
 }
-// endregion GpsPos
+
+message GpsVelData {
+  Vector3 velocity = 1;
+  Vector3 velocity_acc = 2;
+  float course = 3;
+  float course_acc = 4;
+  uint32 time_of_week = 5;
+}
+
+message GpsVel {
+    uint32 time_stamp = 1;
+    GpsVelStatus status = 2;
+    optional GpsVelData data = 3;
+}
+// endregion Gps
 
 message UtcTimeData {
     uint32 year = 1;
@@ -281,20 +284,6 @@ message EkfPositionData {
   Vector3 position_std_dev = 2;
 }
 // endregion EkfNav
-
-message GpsVelData {
-  Vector3 velocity = 1;
-  Vector3 velocity_acc = 2;
-  float course = 3;
-  float course_acc = 4;
-  uint32 time_of_week = 5;
-}
-
-message GpsVel {
-    uint32 time_stamp = 1; // Time in us since the sensor power up.
-    GpsVelStatus status = 2; // GPS velocity status, type and bitmask.
-    optional GpsVelData data = 3;
-}
 
 // endregion Gps
 
