@@ -20,31 +20,39 @@ enum EkfSolutionMode {
   NAV_POSITION = 5;
 }
 
+// Define the bitmask flags as an enum
+enum EkfStatusFlag {
+  option allow_alias = true;
+  EKF_STATUS_NONE           = 0;
+  EKF_STATUS_ATTITUDE_VALID = 1;      // 0x01
+  EKF_STATUS_HEADING_VALID  = 2;      // 0x02
+  EKF_STATUS_VELOCITY_VALID = 4;      // 0x04
+  EKF_STATUS_POSITION_VALID = 8;      // 0x08
+  EKF_STATUS_VERT_REF_USED  = 16;     // 0x10
+  EKF_STATUS_MAG_REF_USED   = 32;     // 0x20
+  EKF_STATUS_GPS1_VEL_USED  = 64;     // 0x40
+  EKF_STATUS_GPS1_POS_USED  = 128;    // 0x80
+  EKF_STATUS_GPS1_HDT_USED  = 256;    // 0x100
+  EKF_STATUS_GPS2_VEL_USED  = 512;    // 0x200
+  EKF_STATUS_GPS2_POS_USED  = 1024;   // 0x400
+  EKF_STATUS_GPS2_HDT_USED  = 2048;   // 0x800
+  EKF_STATUS_ODO_USED       = 4096;   // 0x1000
+  EKF_STATUS_DVL_BT_USED    = 8192;   // 0x2000
+  EKF_STATUS_DVL_WT_USED    = 16384;  // 0x4000
+  EKF_STATUS_USER_POS_USED  = 32768;  // 0x8000
+  EKF_STATUS_USER_VEL_USED  = 65536;  // 0x10000
+  EKF_STATUS_USER_HEADING_USED = 131072; // 0x20000
+  EKF_STATUS_USBL_USED      = 262144; // 0x40000
+  EKF_STATUS_AIR_DATA_USED  = 524288; // 0x80000
+  EKF_STATUS_ZUPT_USED      = 1048576; // 0x100000
+  EKF_STATUS_ALIGN_VALID    = 2097152; // 0x200000
+  EKF_STATUS_DEPTH_USED     = 4194304; // 0x400000
+}
+
+// Use a uint32 to store the bitmask, and keep the solution mode as a separate field
 message EkfStatus {
   EkfSolutionMode solution_mode = 1;
-  bool attitude_valid = 2;
-  bool heading_valid = 3;
-  bool velocity_valid = 4;
-  bool position_valid = 5;
-  bool vert_ref_used = 6;
-  bool mag_ref_used = 7;
-  bool gps1_vel_used = 8;
-  bool gps1_pos_used = 9;
-  bool gps1_hdt_used = 10;
-  bool gps2_vel_used = 11;
-  bool gps2_pos_used = 12;
-  bool gps2_hdt_used = 13;
-  bool odo_used = 14;
-  bool dvl_bt_used = 15;
-  bool dvl_wt_used = 16;
-  bool user_pos_used = 17;
-  bool user_vel_used = 18;
-  bool user_heading_used = 19;
-  bool usbl_used = 20;
-  bool air_data_used = 21;
-  bool zupt_used = 22;
-  bool align_valid = 23;
-  bool depth_used = 24;
+  uint32 flags = 2; // Bitmask of EkfStatusFlag values.
 }
 
 enum ClockStatus {
@@ -76,17 +84,25 @@ message AirStatus {
   bool temperature_valid = 6;
 }
 
+// Define the bitmask flags as an enum
+enum ImuStatusFlag {
+  option allow_alias = true;
+  IMU_STATUS_NONE           = 0;
+  IMU_STATUS_COM_OK         = 1;    // 0x01
+  IMU_STATUS_TEST_PASS      = 2;    // 0x02
+  IMU_STATUS_ACCEL_X_PASS   = 4;    // 0x04
+  IMU_STATUS_ACCEL_Y_PASS   = 8;    // 0x08
+  IMU_STATUS_ACCEL_Z_PASS   = 16;   // 0x10
+  IMU_STATUS_GYRO_X_PASS    = 32;   // 0x20
+  IMU_STATUS_GYRO_Y_PASS    = 64;   // 0x40
+  IMU_STATUS_GYRO_Z_PASS    = 128;  // 0x80
+  IMU_STATUS_ACCELS_IN_RANGE = 256; // 0x100
+  IMU_STATUS_GYROS_IN_RANGE  = 512; // 0x200
+}
+
+// Use a uint32 to store the bitmask
 message ImuStatus {
-  bool com_ok = 1;
-  bool status_test_pass = 2;
-  bool accel_x_test_pass = 3;
-  bool accel_y_test_pass = 4;
-  bool accel_z_test_pass = 5;
-  bool gyro_x_test_pass = 6;
-  bool gyro_y_test_pass = 7;
-  bool gyro_z_test_pass = 8;
-  bool accels_in_range = 9;
-  bool gyros_in_range = 10;
+  uint32 flags = 1; // Bitmask of ImuStatusFlag values.
 }
 
 enum GpsPositionStatusE {
