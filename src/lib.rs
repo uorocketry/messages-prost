@@ -14,6 +14,10 @@ pub mod sensor {
     pub mod madgwick {
         include!(concat!(env!("OUT_DIR"), "/messages_prost.madgwick.rs"));
     }
+
+    pub mod iim20670 {
+        include!(concat!(env!("OUT_DIR"), "/messages_prost.iim20670.rs"));
+    }
 }
 
 
