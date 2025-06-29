@@ -38,9 +38,9 @@ enum GyroFullScale {
 // A generic message to represent a 3-axis vector.
 // Using sint32 for 16-bit signed values from the sensor's ADCs.
 message Vector3 {
-  sint32 x = 1;
-  sint32 y = 2;
-  sint32 z = 3;
+  float x = 1;
+  float y = 2;
+  float z = 3;
 }
 
 // This is the main message to hold a complete data frame from the IIM-20670.
