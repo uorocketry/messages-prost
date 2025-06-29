@@ -74,13 +74,20 @@ message UtcTimeStatus {
   UtcStatus utc_status = 2;
 }
 
+// Define the bitmask flags as an enum
+enum AirStatusFlag {
+  AIR_STATUS_NONE           = 0;
+  AIR_STATUS_TIME_IS_DELAY  = 1;    // 0x01
+  AIR_STATUS_PRESSURE_ABS_VALID = 2; // 0x02
+  AIR_STATUS_ALTITUDE_VALID = 4;    // 0x04
+  AIR_STATUS_PRESSURE_DIFF_VALID = 8; // 0x08
+  AIR_STATUS_AIRSPEED_VALID = 16;   // 0x10
+  AIR_STATUS_TEMPERATURE_VALID = 32; // 0x20
+}
+
+// Use a uint32 to store the bitmask
 message AirStatus {
-  bool time_is_delay = 1;
-  bool pressure_abs_valid = 2;
-  bool altitude_valid = 3;
-  bool pressure_diff_valid = 4;
-  bool airspeed_valid = 5;
-  bool temperature_valid = 6;
+  uint32 flags = 1; // Bitmask of AirStatusFlag values.
 }
 
 // Define the bitmask flags as an enum
