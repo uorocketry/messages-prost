@@ -22,7 +22,6 @@ enum EkfSolutionMode {
 
 // Define the bitmask flags as an enum
 enum EkfStatusFlag {
-  option allow_alias = true;
   EKF_STATUS_NONE           = 0;
   EKF_STATUS_ATTITUDE_VALID = 1;      // 0x01
   EKF_STATUS_HEADING_VALID  = 2;      // 0x02
@@ -86,7 +85,6 @@ message AirStatus {
 
 // Define the bitmask flags as an enum
 enum ImuStatusFlag {
-  option allow_alias = true;
   IMU_STATUS_NONE           = 0;
   IMU_STATUS_COM_OK         = 1;    // 0x01
   IMU_STATUS_TEST_PASS      = 2;    // 0x02
