@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package messages_prost.state;
+
+import "common.proto";
+
+enum State {
+  STATE_UNSPECIFIED = 0;
+  INITIALIZING = 1;
+  WAIT_FOR_TAKEOFF = 2;
+  ASCENT = 3;
+  DESCENT = 4;
+  TERMINAL_DESCENT = 5;
+  WAIT_FOR_RECOVERY = 6;
+  ABORT = 7;
+}
+
+message StateMessage {
+    common.Node node = 1; 
+    State state = 2; 
+}

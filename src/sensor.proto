@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package messages_prost.sensor;
-
-message Sensor {
-    uint32 session_id = 1; 
-}
