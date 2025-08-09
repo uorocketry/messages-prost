@@ -33,5 +33,31 @@ pub mod log {
     include!(concat!(env!("OUT_DIR"), "/messages_prost.log.rs"));
 }
 
+pub mod command {
+    include!(concat!(env!("OUT_DIR"), "/messages_prost.command.rs"));
+}
+
+pub mod radio {
+    include!(concat!(env!("OUT_DIR"), "/messages_prost.radio.rs"));
+}
+
+// Top-level shims to satisfy generated type paths referenced by `radio` oneof
+// while preserving the existing `sensor::*` public API.
+pub mod sbg {
+    pub use crate::sensor::sbg::*;
+}
+
+pub mod gps {
+    pub use crate::sensor::gps::*;
+}
+
+pub mod madgwick {
+    pub use crate::sensor::madgwick::*;
+}
+
+pub mod iim20670 {
+    pub use crate::sensor::iim20670::*;
+}
+
 pub use mavlink;
 pub use prost;
