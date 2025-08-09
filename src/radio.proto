@@ -13,8 +13,6 @@ import "command.proto";
 
 message RadioFrame {
   messages_prost.common.Node node = 1;
-  // MAVLink or link-layer sequence number observed at the radio
-  uint32 sequence = 9;
   oneof payload {
     messages_prost.sbg.SbgData sbg = 2;
     messages_prost.gps.Gps gps = 3;

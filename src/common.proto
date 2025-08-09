@@ -8,6 +8,7 @@ enum Node {
   TEMPERATURE_BOARD = 2;
   STRAIN_BOARD = 3;
   GROUND_STATION = 4;
+  PHOENIX = 5;
 }
 
 enum ErrorContext {

@@ -16,7 +16,8 @@ message DeployDrogue { bool val = 1; }
 message DeployMain { bool val = 1; }
 message PowerDown { messages_prost.common.Node board = 1; }
 message RadioRateChange { RadioRate rate = 1; }
-message Ping {}
+message Ping { uint32 id = 1; }
+message Pong { uint32 id = 1; }
 
 message Command {
   // target or origin as applicable
@@ -28,6 +29,7 @@ message Command {
     PowerDown power_down = 5;
     RadioRateChange radio_rate_change = 6;
     Ping ping = 7;
+    Pong pong = 8;
   }
 }
 
