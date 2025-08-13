@@ -5,13 +5,8 @@ package messages_prost.ms5611;
 import "common.proto";
 
 // MS5611 barometric pressure sensor
-message BarometerData {
+message Barometer {
   float pressure_kpa = 1;        // Pressure in kilopascals
   float temperature_celsius = 2;  // Temperature in degrees Celsius
 }
 
-// Wrapper message that includes the node information
-message Barometer {
-  common.Node node = 1;
-  BarometerData data = 2;
-}
