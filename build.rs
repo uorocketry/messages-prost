@@ -15,6 +15,7 @@ fn main() -> Result<()> {
                 "src/state.proto",
                 "src/sensor/madgwick.proto",
                 "src/sensor/iim20670.proto",
+                "src/sensor/ms5611.proto",
                 "src/command.proto",
                 "src/radio.proto",
             ],

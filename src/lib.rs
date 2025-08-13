@@ -18,6 +18,10 @@ pub mod sensor {
     pub mod iim20670 {
         include!(concat!(env!("OUT_DIR"), "/messages_prost.iim20670.rs"));
     }
+
+    pub mod ms5611 {
+        include!(concat!(env!("OUT_DIR"), "/messages_prost.ms5611.rs"));
+    }
 }
 
 
@@ -57,6 +61,10 @@ pub mod madgwick {
 
 pub mod iim20670 {
     pub use crate::sensor::iim20670::*;
+}
+
+pub mod ms5611 {
+    pub use crate::sensor::ms5611::*;
 }
 
 pub use mavlink;
