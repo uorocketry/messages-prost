@@ -18,6 +18,8 @@ message PowerDown { messages_prost.common.Node board = 1; }
 message RadioRateChange { RadioRate rate = 1; }
 message Ping { uint32 id = 1; }
 message Pong { uint32 id = 1; }
+message PowerUpCamera {}
+message PowerDownCamera {}
 
 message Command {
   // target or origin as applicable
@@ -30,6 +32,8 @@ message Command {
     RadioRateChange radio_rate_change = 6;
     Ping ping = 7;
     Pong pong = 8;
+    PowerUpCamera power_up_camera = 9;
+    PowerDownCamera power_down_camera = 10;
   }
 }
 
