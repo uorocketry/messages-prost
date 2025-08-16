@@ -7,4 +7,3 @@ message Barometer {
   float pressure_kpa = 1;        // Pressure in kilopascals
   float temperature_celsius = 2;  // Temperature in degrees Celsius
 }
-

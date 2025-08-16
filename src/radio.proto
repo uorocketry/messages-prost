@@ -5,6 +5,7 @@ package messages_prost.radio;
 import "common.proto";
 import "sbg.proto";
 import "gps.proto";
+import "sensor/argus.proto";
 import "sensor/madgwick.proto";
 import "sensor/iim20670.proto";
 import "sensor/ms5611.proto";
@@ -27,8 +28,11 @@ message RadioFrame {
     messages_prost.phoenix_state.Event phoenix_event = 10;
     messages_prost.argus_state.Event argus_event = 11; 
     messages_prost.argus_state.State argus_state = 12;  
+    messages_prost.argus.Pressure argus_pressure = 13;
+    messages_prost.argus.Temperature argus_temperature = 14; 
+    messages_prost.argus.Strain argus_strain = 15; 
   }
-  uint64 millis_since_start = 13; 
+  uint64 millis_since_start = 16; 
 }
 
 

@@ -22,6 +22,10 @@ pub mod sensor {
     pub mod ms5611 {
         include!(concat!(env!("OUT_DIR"), "/messages_prost.ms5611.rs"));
     }
+
+    pub mod argus {
+        include!(concat!(env!("OUT_DIR"), "/messages_prost.argus.rs")); 
+    }
 }
 
 
@@ -69,6 +73,10 @@ pub mod iim20670 {
 
 pub mod ms5611 {
     pub use crate::sensor::ms5611::*;
+}
+
+pub mod argus {
+    pub use crate::sensor::argus::*;
 }
 
 pub use mavlink;

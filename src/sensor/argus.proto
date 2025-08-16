@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package messages_prost.argus;
+
+message Pressure {
+  float pressure = 1;
+  uint32 sensor_id = 2; 
+}
+
+message Strain {
+  float strain = 1; 
+  uint32 sensor_id =2; 
+}
+
+message Temperature {
+  float temperature = 1;
+  uint32 sensor_id = 2; 
+}
