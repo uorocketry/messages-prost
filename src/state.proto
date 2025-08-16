@@ -5,17 +5,24 @@ package messages_prost.state;
 import "common.proto";
 
 enum State {
-  STATE_UNSPECIFIED = 0;
-  INITIALIZING = 1;
-  WAIT_FOR_TAKEOFF = 2;
-  ASCENT = 3;
-  DESCENT = 4;
-  TERMINAL_DESCENT = 5;
-  WAIT_FOR_RECOVERY = 6;
-  ABORT = 7;
+  FUCK = 0; 
+  INIT = 1;
+  WAIT_FOR_LAUNCH = 2; 
+  ASCENT = 3; 
+  DESCENT = 4; 
+  DROGUE_DESCENT = 5; 
+  MAIN_DESCENT = 6;
+  FAULT = 7;
+  LANDED = 8; 
 }
 
-message StateMessage {
-    common.Node node = 1; 
-    State state = 2; 
+enum Event {
+  START = 0;
+  LAUNCH = 1; 
+  APOGEE = 2; 
+  MAIN_DEPLOYMENT = 3; 
+  DROGUE_DEPLOYMENT = 4; 
+  NO_MOVEMENT = 5; 
+  FAULT_DETECTED = 6; 
+  FAULT_CLEARED = 7;  
 }

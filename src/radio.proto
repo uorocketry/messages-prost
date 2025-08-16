@@ -21,8 +21,9 @@ message RadioFrame {
     messages_prost.iim20670.Imu iim20670 = 5;
     messages_prost.ms5611.Barometer barometer = 6;
     messages_prost.log.Log log = 7;
-    messages_prost.state.StateMessage state = 8;
+    messages_prost.state.State state = 8;
     messages_prost.command.Command command = 9;
+    messages_prost.state.Event event = 10; 
   }
 }
 
