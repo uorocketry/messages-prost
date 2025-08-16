@@ -9,7 +9,8 @@ import "sensor/madgwick.proto";
 import "sensor/iim20670.proto";
 import "sensor/ms5611.proto";
 import "log.proto";
-import "state.proto";
+import "argus_state.proto";
+import "phoenix_state.proto";
 import "command.proto";
 
 message RadioFrame {
@@ -21,10 +22,13 @@ message RadioFrame {
     messages_prost.iim20670.Imu iim20670 = 5;
     messages_prost.ms5611.Barometer barometer = 6;
     messages_prost.log.Log log = 7;
-    messages_prost.state.State state = 8;
+    messages_prost.phoenix_state.PhoenixState phoenix_state = 8;
     messages_prost.command.Command command = 9;
-    messages_prost.state.Event event = 10; 
+    messages_prost.phoenix_state.PhoenixEvent phoenix_event = 10;
+    messages_prost.argus_state.ArgusEvent argus_event = 11; 
+    messages_prost.argus_state.ArgusState argus_state = 12;  
   }
+  uint64 millis_since_start = 13; 
 }
 
 

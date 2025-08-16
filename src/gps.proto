@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package messages_prost.gps;
 
-import "common.proto";
-
 message Gps {
     bytes data = 1;
 }

@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package messages_prost.ms5611;
 
-import "common.proto";
-
 // MS5611 barometric pressure sensor
 message Barometer {
   float pressure_kpa = 1;        // Pressure in kilopascals

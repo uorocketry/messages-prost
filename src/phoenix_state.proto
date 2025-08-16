@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package messages_prost.state;
+package messages_prost.phoenix_state;
 
-import "common.proto";
-
-enum State {
+enum PhoenixState {
   FUCK = 0; 
   INIT = 1;
   WAIT_FOR_LAUNCH = 2; 
@@ -16,7 +14,7 @@ enum State {
   LANDED = 8; 
 }
 
-enum Event {
+enum PhoenixEvent {
   START = 0;
   LAUNCH = 1; 
   APOGEE = 2; 

@@ -29,8 +29,12 @@ pub mod common {
     include!(concat!(env!("OUT_DIR"), "/messages_prost.common.rs"));
 }
 
-pub mod state {
-    include!(concat!(env!("OUT_DIR"), "/messages_prost.state.rs"));
+pub mod argus_state {
+    include!(concat!(env!("OUT_DIR"), "/messages_prost.argus_state.rs"));
+}
+
+pub mod phoenix_state {
+    include!(concat!(env!("OUT_DIR"), "/messages_prost.phoenix_state.rs"));
 }
 
 pub mod log {
